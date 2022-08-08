@@ -17,13 +17,13 @@ Membros: <br>
 Clonar o repositório :
 
 ```bash
-git clone https://gitlab.com/SantosMatheus8/trabalho-final-grupo02.git
+git clone https://github.com/JohnnHere/Node.js-API.git
 ```
 
 Trocar para o arquivo do repositório :
 
 ```bash
-cd trabalho-final-grupo02
+cd Node.js-API
 ```
 
 Instalas as dependencias :
