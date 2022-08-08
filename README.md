@@ -1,4 +1,4 @@
-# Portal de videos Raro Academy - Raro Tube
+# Portal de vídeos Raro Academy - Raro Tube
 
 Projeto final da turma de Node.js da Raro Academy
 
