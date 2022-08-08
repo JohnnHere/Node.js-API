@@ -1,19 +1,29 @@
-# Portal de videos Raro Academy - Raro Tube
+# Portal de vídeos Raro Academy - Raro Tube
 
-Projeto final da turma de nodejs da Raro Academy
+Projeto final da turma de Node.js da Raro Academy
+
+Membros: <br>
+<a href="https://github.com/JohnnHere"><button style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">João Orlando</button></a>
+<br>
+<a href="https://github.com/anapaula-noleto"><button style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">Ana Paula</button></a>
+<br>
+<a href="https://github.com/SantosMatheus8"><button style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">Matheus Pereira</button></a>
+<br>
+<a href="https://github.com/patr0ci"><button style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">Felipe Patrocínio</button></a>
+<br>
 
 ## Instalação
 
 Clonar o repositório :
 
 ```bash
-git clone https://gitlab.com/SantosMatheus8/trabalho-final-grupo02.git
+git clone https://github.com/JohnnHere/Node.js-API.git
 ```
 
 Trocar para o arquivo do repositório :
 
 ```bash
-cd trabalho-final-grupo02
+cd Node.js-API
 ```
 
 Instalas as dependencias :
