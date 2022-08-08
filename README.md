@@ -56,11 +56,6 @@ Este comando é um atalho para o jest, que está instalado localmente no projeto
 ```bash
 npm run test
 ```
-
-## Cobertura de testes
-
-Atualmente a cobertura de testes está em 80%
-
 ## Pacotes
 
 Principais pacotes do projeto :
