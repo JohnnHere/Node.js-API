@@ -2,10 +2,15 @@
 
 Projeto final da turma de nodejs da Raro Academy
 
-Membros: https://github.com/JohnnHere
-         https://github.com/anapaula-noleto
-         https://github.com/patr0ci
-         https://github.com/SantosMatheus8
+Membros: <br>
+<a href="https://github.com/JohnnHere"><button style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">João Orlando</button></a>
+<br>
+<a href="https://github.com/anapaula-noleto"><button style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">Ana Paula</button></a>
+<br>
+<a href="https://github.com/SantosMatheus8"><button style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">Matheus Pereira</button></a>
+<br>
+<a href="https://github.com/patr0ci"><button style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">Felipe Patrocínio</button></a>
+<br>
 
 ## Instalação
 
