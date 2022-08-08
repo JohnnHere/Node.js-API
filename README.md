@@ -1,6 +1,6 @@
 # Portal de videos Raro Academy - Raro Tube
 
-Projeto final da turma de nodejs da Raro Academy
+Projeto final da turma de Node.js da Raro Academy
 
 Membros: <br>
 <a href="https://github.com/JohnnHere"><button style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">João Orlando</button></a>
