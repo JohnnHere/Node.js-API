@@ -2,6 +2,11 @@
 
 Projeto final da turma de nodejs da Raro Academy
 
+Membros: https://github.com/JohnnHere
+         https://github.com/anapaula-noleto
+         https://github.com/patr0ci
+         https://github.com/SantosMatheus8
+
 ## Instalação
 
 Clonar o repositório :
