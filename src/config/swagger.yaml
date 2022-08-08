@@ -1,0 +1,1787 @@
+swagger: "2.0"
+info:
+  title: Raro Tube
+  description: Portal de videos Raro Academy - Raro Tube.
+  version: 1.0.0
+  contact: {}
+securityDefinitions:
+  APIKeyHeader:
+    type: apiKey
+    in: header
+    name: Authorization
+tags:
+  - name: "autenticação"
+    description: "Rotas de cadastro e login"
+  - name: "usuarios"
+    description: "Rotas de usuarios"
+  - name: "videos"
+    description: "Rotas de videos"
+  - name: "turmas"
+    description: "Rotas de turmas"
+  - name: "professor turma"
+    description: "Rotas do professorTurma"
+  - name: "materias"
+    description: "Rotas das materias"
+  - name: "historicos"
+    description: "Rota dos historicos"
+  - name: "favoritos"
+    description: "Rotas dos favoritos"
+  - name: "comentarios"
+    description: "Rotas de comentarios"
+  - name: "votos"
+    description: "Rotas de votos"
+
+schemes:
+  - "http"
+definitions:
+  LoginResponse:
+    type: object
+    properties:
+      token:
+        type: string
+      tipoUsuario:
+        type: string
+    required:
+      - token
+      - tipoUsuario
+  CreateUsuarioDTO:
+    type: "object"
+    required:
+      - "nome"
+      - "email"
+      - "fotoPerfil"
+      - "senha"
+    properties:
+      nome:
+        type: "string"
+        example: "Usuario Teste"
+      email:
+        type: "string"
+        example: "email@teste.com"
+      fotoPerfil:
+        type: "string"
+        example: "imagemPerfil"
+      senha:
+        type: "string"
+        example: "Senha123#"
+  CreateAlunoDTO:
+    type: "object"
+    required:
+      - "nome"
+      - "email"
+      - "fotoPerfil"
+      - "senha"
+      - "codigoTurma"
+    properties:
+      nome:
+        type: "string"
+        example: "Aluno Teste"
+      email:
+        type: "string"
+        example: "aluno@teste.com"
+      fotoPerfil:
+        type: "string"
+        example: "imagemPerfil"
+      senha:
+        type: "string"
+        example: "Senha123#"
+      codigoTurma:
+        type: "string"
+        example: "461d18c3-166a-45cf-ad2a-d3c28a3bd739"
+  UsuarioDTO:
+    type: "object"
+    required:
+      - "nome"
+      - "email"
+      - "fotoPerfil"
+      - "senha"
+    properties:
+      nome:
+        type: "string"
+        example: "Usuario Teste"
+      email:
+        type: "string"
+        example: "email@teste.com"
+      fotoPerfil:
+        type: "string"
+        example: "imagemPerfil"
+      senha:
+        type: "string"
+        example: "Senha123#"
+  CreateFavoritoDTO:
+    type: "object"
+  FavoritoDTO:
+    type: "object"
+    required:
+      - "videoId"
+      - "alunoId"
+    properties:
+      videoId:
+        type: "string"
+        example: "3CB163F1-5C95-11E2-85CC-002180FBAC1B"
+      alunoId:
+        type: "string"
+        example: "7YB223F1-5C94-13E0-92FC-002380FBAC5B"
+  CreateTurmaDTO:
+    type: "object"
+    required:
+      - "nome"
+      - "descricao"
+      - "logoDoCurso"
+    properties:
+      nome:
+        type: "string"
+        example: "Turma de back-end"
+      descricao:
+        type: "string"
+        example: "Turma de back-end de Node"
+      logoDoCurso:
+        type: "string"
+        example: "imagemLogo"
+  TurmaDTO:
+    type: "object"
+    required:
+      - "id"
+      - "nome"
+      - "descricao"
+      - "logoDoCurso"
+    properties:
+      id:
+        type: "string"
+        example: "2CA263F1-5C94-11E0-84CC-002170FBAC5B"
+      nome:
+        type: "string"
+        example: "Turma de back-end"
+      descricao:
+        type: "string"
+        example: "Turma de back-end de Node"
+      logoDoCurso:
+        type: "string"
+        example: "imagemLogo"
+  CreateVideoDTO:
+    type: "object"
+    required:
+      - "turmaId"
+      - "nome"
+      - "descricao"
+      - "arquivoDoVideo"
+      - "imagemBanner"
+    properties:
+      turmaId:
+        type: "string"
+        example: "2CA263F1-5C94-11E0-84CC-002170FBAC5B"
+      nome:
+        type: "string"
+        example: "Git/Git Flow"
+      descricao:
+        type: "string"
+        example: "O video aborda os principais comandos git e a importância de usar o gitflow"
+      arquivoDoVideo:
+        type: "string"
+        example: "teste"
+      imagemBanner:
+        type: "string"
+        example: "teste"
+  VideoDTO:
+    type: "object"
+    required:
+      - "id"
+      - "turmaId"
+      - "nome"
+      - "descricao"
+      - "arquivoDoVideo"
+      - "imagemBanner"
+    properties:
+      id:
+        type: "string"
+        example: "2CA263F1-5C94-11E0-84CC-002170FBAC5B"
+      turmaId:
+        type: "string"
+        example: "2CA263F1-5C94-11E0-84CC-002170FBAC5B"
+      nome:
+        type: "string"
+        example: "Git/Git Flow"
+      descricao:
+        type: "string"
+        example: "O video aborda os principais comandos git e a importância de usar o gitflow"
+      arquivoDoVideo:
+        type: "string"
+        example: "teste"
+      imagemBanner:
+        type: "string"
+        example: "teste"
+  VotoDTO:
+    type: "object"
+    properties:
+      comentarioId:
+        type: "string"
+        example: "2CA263F1-5C94-11E0-84CC-002170FBAC5B"
+      usuarioId:
+        type: "string"
+        example: "1E345F18-FC3B-492D-B22D-E18ABBDC7BE9"
+      voto:
+        type: "boolean"
+        example: "true"
+  CreateComentarioDTO:
+    type: "object"
+    required:
+      - "videoId"
+      - "usuarioId"
+      - "conteudo"
+    properties:
+      videoId:
+        type: "string"
+        example: "2CA263F1-5C94-11E0-84CC-002170FBAC5B"
+      usuarioId:
+        type: "string"
+        example: "F9B0CC28-A63A-4672-BF42-3B0E7508299E"
+      conteudo:
+        type: "string"
+        example: "Gostei muito do vídeo"
+  ComentarioDTO:
+    type: "object"
+    required:
+      - "id"
+      - "videoId"
+      - "usuarioId"
+      - "conteudo"
+  AddHistoricoDTO:
+    type: "object"
+    required:
+      - "videoId"
+      - "alunoId"
+    properties:
+      videoId:
+        type: "string"
+        example: "2BA263F1-5T94-11Y0-84CN-091170FBAC5B"
+      alunoId:
+        type: "string"
+        example: "F8B0CC28-A63B-4652-BF32-3B0R7508299E"
+  CreateMateriaDTO:
+    type: "object"
+    required:
+      - "videoId"
+      - "materiaId"
+      - "nome"
+    properties:
+      videoId:
+        type: "string"
+        example: "2YA263F1-5Z94-11Y2-94DC-102180HBAC6B"
+      materiaId:
+        type: "string"
+        example: "F1B0CD28-T63B-5672-IF32-2B8T7508399U"
+      nome:
+        type: "string"
+        example: "Carlos Silva"
+  MateriaDTO:
+    type: "object"
+    required:
+      - "id"
+      - "videoId"
+      - "materiaId"
+      - "nome"
+    properties:
+      id:
+        type: "string"
+        example: "0E245F18-JC3B-292T-A22B-J16ABBHC7YE9"
+      videoId:
+        type: "string"
+        example: "1CA363G1-6T93-10K0-24VC-103170CBFC5X"
+      materiaId:
+        type: "string"
+        example: "T9B0CC28-A63A-5172-NF42-2M0E7592399E"
+      nome:
+        type: "string"
+        example: "Maria Fernanda"
+  DeleteVotoDTO:
+    type: "object"
+    required:
+      - "comentarioId"
+      - "usuarioId"
+    properties:
+      comentarioId:
+        type: "string"
+        example: "2CA263F1-5C94-11E0-84CC-002170FBAC5B"
+      usuarioId:
+        type: "string"
+        example: "1E345F18-FC3B-492D-B22D-E18ABBDC7BE9"
+  EmailDTO:
+    type: "object"
+    required:
+      - "emailAluno"
+      - "emailOrigem"
+      - "assunto"
+      - "codigoAcesso"
+    properties:
+      emailAluno:
+        type: "string"
+        example: "emailaluno@teste.com"
+      emailOrigem:
+        type: "string"
+        example: "emailorigem@teste.com"
+      assunto:
+        type: "string"
+        example: "Raro Academy"
+      codigoAcesso:
+        type: "string"
+        example: "d42b7b90-df35-41f6-b67d-569ecbe00088"
+  ErrorDTO:
+    type: "object"
+    required:
+      - "name"
+      - "message"
+      - "httpStatus"
+      - "fieldsErrors"
+    properties:
+      name:
+        type: "string"
+        example: "BadRequestError"
+      message:
+        type: "string"
+        example: "Erro de validação"
+      httpStatus:
+        type: "string"
+        example: "400"
+      fieldsErrors:
+        type: "array"
+
+  EmailRecuperacaoDTO:
+    type: "object"
+    required:
+      - "emailAluno"
+      - "emailOrigem"
+      - "assunto"
+    properties:
+      emailAluno:
+        type: "string"
+        example: "emailaluno@teste.com"
+      emailOrigem:
+        type: "string"
+        example: "emailorigem@teste.com"
+      assunto:
+        type: "string"
+        example: "Raro Academy - Recuperação de senha"
+  CreateProfessorTurmaDTO:
+    type: "object"
+    required:
+      - "professorId"
+      - "turmaId"
+    properties:
+      professorId:
+        type: "string"
+        example: "ec8310e7-1701-40e3-ab60-b5a304b1c041"
+      turmaId:
+        type: "string"
+        example: "19fccf94-efec-4d97-b3bc-f83d28c2edd0"
+paths:
+  /autenticacao/signup/aluno:
+    post:
+      tags:
+        - autenticação
+      summary: "Cadastrar um aluno"
+      description: "Rota disponível para todos."
+      operationId: "createAluno"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto para criar uma aluno"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateAlunoDTO"
+      responses:
+        "201":
+          description: "Objeto criado"
+          schema:
+            $ref: "#/definitions/UsuarioDTO"
+        "400":
+          description: "Validation"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "422":
+          description: "Unprocessable Entity Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /autenticacao/signup/professor:
+    post:
+      tags:
+        - autenticação
+      security:
+        - APIKeyHeader: []
+      summary: "Cadastrar um professor"
+      description: "Rota disponível apenas para administradores."
+      operationId: "createProfessor"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto para criar um professor"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateUsuarioDTO"
+      responses:
+        "201":
+          description: "Objeto criado"
+          schema:
+            $ref: "#/definitions/UsuarioDTO"
+        "400":
+          description: "Validation Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "422":
+          description: "Unprocessable Entity Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /autenticacao/signup/admin:
+    post:
+      tags:
+        - autenticação
+      security:
+        - APIKeyHeader: []
+      summary: "Cadastrar um administrador"
+      description: "Rota disponível apenas para administradores."
+      operationId: "createAdmin"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto para criar uma admin"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateUsuarioDTO"
+      responses:
+        "201":
+          description: "Objeto criado"
+          schema:
+            $ref: "#/definitions/UsuarioDTO"
+        "400":
+          description: "Validation Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "422":
+          description: "Unprocessable Entity Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /autenticacao/login:
+    post:
+      tags:
+        - autenticação
+      summary: "Login de usuário"
+      description: "Rota disponível apenas para todos."
+      operationId: "loginUsuario"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          type: "string"
+          name: "email"
+          description: "Email do usuário"
+          required: true
+        - in: "header"
+          type: "string"
+          name: "senha"
+          description: "Senha do usuário"
+          required: true
+      responses:
+        "201":
+          description: "Objeto criado"
+          schema:
+            $ref: "#/definitions/LoginResponse"
+        "401":
+          description: "Unauthorized error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /usuario:
+    get:
+      tags:
+        - "usuarios"
+      security:
+        - APIKeyHeader: []
+      summary: "Listar todas usuarios"
+      description: "Rota disponível apenas para administradores"
+      operationId: "getAllUsuarios"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/UsuarioDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /usuario/{id}:
+    delete:
+      tags:
+        - "usuarios"
+      security:
+        - APIKeyHeader: []
+      summary: "Deletar um usuario pelo ID"
+      description: "Deletar um usuario pelo ID"
+      operationId: "deleteUsuario"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID do usuario que será deletado"
+          required: true
+          type: "string"
+          format: "UUID"
+      responses:
+        "204":
+          description: "Objeto deletado"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+    get:
+      tags:
+        - "usuarios"
+      security:
+        - APIKeyHeader: []
+      summary: "Obter uma usuario pelo ID"
+      description: "Rota disponível apenas para usuários com permissão para acessar a usuario."
+      operationId: "getUsuarioById"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID da usuario que será fornecido"
+          required: true
+          type: "string"
+          format: "UUID"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/UsuarioDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+    put:
+      tags:
+        - "usuarios"
+      security:
+        - APIKeyHeader: []
+      summary: "Atualiza um usuario pelo ID"
+      description: "Retorna o usuario atualizado. Disponível apenas para administradores e professores."
+      operationId: "updateUsuarioById"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "Objeto do usuario que irá ser salvo."
+          required: true
+          type: "string"
+          format: "UUID"
+        - in: "body"
+          name: "body"
+          description: "Retorna o usuário atualizado"
+          required: true
+          schema:
+            $ref: "#/definitions/UsuarioDTO"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/UsuarioDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /turma:
+    post:
+      tags:
+        - "turmas"
+      security:
+        - APIKeyHeader: []
+      summary: "Criar uma nova turma"
+      description: "Criar uma nova turma"
+      operationId: "createTurma"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto para criar uma turma"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateTurmaDTO"
+      responses:
+        "201":
+          description: "Objeto criado"
+          schema:
+            $ref: "#/definitions/TurmaDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+    get:
+      tags:
+        - "turmas"
+      summary: "Listar todas turmas"
+      description: "Rota disponível apenas para administradores"
+      operationId: "getAllTurmas"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/TurmaDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /turma/{id}:
+    delete:
+      tags:
+        - "turmas"
+      security:
+        - APIKeyHeader: []
+      summary: "Deletar uma turma pelo ID"
+      description: "Deletar uma turma pelo ID"
+      operationId: "deleteTurma"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID da turma que será deletado"
+          required: true
+          type: "string"
+          format: "UUID"
+      responses:
+        "204":
+          description: "Objeto deletado"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+    get:
+      tags:
+        - "turmas"
+      summary: "Obter uma turma pelo ID"
+      description: "Rota disponível apenas para usuários com permissão para acessar a turma."
+      operationId: "getTurmaById"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID da turma que será fornecido"
+          required: true
+          type: "string"
+          format: "UUID"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/TurmaDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+    put:
+      tags:
+        - "turmas"
+      security:
+        - APIKeyHeader: []
+      summary: "Atualiza uma turma pelo ID"
+      description: "Retorna a turma atualizada. Disponível apenas para administradores e professores."
+      operationId: "updateTurmaById"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "Objeto da turma que irá ser salvo."
+          required: true
+          type: "string"
+          format: "UUID"
+        - in: "body"
+          name: "body"
+          description: "Objeto da turma que irá ser salvo."
+          required: true
+          schema:
+            $ref: "#/definitions/TurmaDTO"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/TurmaDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /videos:
+    post:
+      tags:
+        - "videos"
+      security:
+        - APIKeyHeader: []
+      summary: "Criar um novo vídeo"
+      description: "Rota disponível apenas para administrados e professores com acesso a turma do vídeo."
+      operationId: "createVideo"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto para criar um vídeo"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateVideoDTO"
+      responses:
+        "201":
+          description: "Objeto criado"
+          schema:
+            $ref: "#/definitions/VideoDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+    get:
+      tags:
+        - "videos"
+      security:
+        - APIKeyHeader: []
+      summary: "Listar todos os vídeos de todas as turmas. Essa rota mostra apenas vídeos privados."
+      description: "Rota disponível apenas para administradores"
+      operationId: "getAllVideos"
+      parameters:
+        - in: "query"
+          name: "page"
+          required: false
+          type: number
+          default: 1
+        - in: "query"
+          name: "per"
+          required: false
+          type: number
+          default: 20
+        - in: "query"
+          name: "orderBy"
+          description: "Por padrão é ordenado por turma."
+          enum:
+            - video
+            - turma
+          required: false
+          type: string
+        - in: "query"
+          name: "orderDirection"
+          description: "Por padrão é ordenado de forma ascendente."
+          enum:
+            - ASC
+            - DESC
+          required: false
+          type: string
+        - in: "query"
+          name: "nome"
+          required: false
+          type: string
+        - in: "query"
+          name: "turma"
+          required: false
+          type: string
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/VideoDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /videos/publicos:
+    get:
+      tags:
+        - "videos"
+      summary: "Listar todos os vídeos públicos."
+      description: "Rota disponível para todos."
+      operationId: "getAllVideosPublicos"
+      parameters:
+        - in: "query"
+          name: "page"
+          required: false
+          type: number
+          default: 1
+        - in: "query"
+          name: "per"
+          required: false
+          type: number
+          default: 20
+        - in: "query"
+          name: "orderBy"
+          description: "Por padrão é ordenado por nome do vídeo."
+          enum:
+            - nome
+            - createdAt
+          required: false
+          type: string
+        - in: "query"
+          name: "orderDirection"
+          description: "Por padrão é ordenado de forma ascendente."
+          enum:
+            - ASC
+            - DESC
+          required: false
+          type: string
+        - in: "query"
+          name: "nome"
+          required: false
+          type: string
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/VideoDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /videos/{id}:
+    delete:
+      tags:
+        - "videos"
+      security:
+        - APIKeyHeader: []
+      summary: "Deletar um vídeo pelo ID"
+      description: "Rota disponível apenas para administrados e professores com acesso a turma do vídeo."
+      operationId: "deleteVideo"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID do vídeo que será deletado"
+          required: true
+          type: "string"
+          format: "UUID"
+      responses:
+        "204":
+          description: "Objeto deletado"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+    get:
+      tags:
+        - "videos"
+      security:
+        - APIKeyHeader: []
+      summary: "Obter um vídeo pelo ID"
+      description: "Rota disponível apenas para usuários com permissão para acessar o vídeo."
+      operationId: "getVideoById"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID do vídeo que será fornecido"
+          required: true
+          type: "string"
+          format: "UUID"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/VideoDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+    put:
+      tags:
+        - "videos"
+      security:
+        - APIKeyHeader: []
+      summary: "Atualiza um vídeo pelo ID"
+      description: "Retorna o vídeo atualizado. Disponível apenas para administradores e professores."
+      operationId: "updateVideoById"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "Objeto do vídeo que irá ser salvo."
+          required: true
+          type: "string"
+          format: "UUID"
+        - in: "body"
+          name: "body"
+          description: "Objeto do vídeo que irá ser   salvo."
+          required: true
+          schema:
+            $ref: "#/definitions/VideoDTO"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/VideoDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /videos/{id}/recomendados:
+    get:
+      tags:
+        - "videos"
+      security:
+        - APIKeyHeader: []
+      summary: "Obter lista vídeos recomendados pelo ID do um vídeo"
+      description: "Rota disponível apenas para usuários com permissão para acessar o vídeo."
+      operationId: "getVideosRecomendadosByVideoId"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID do vídeo que será a referência para os vídeos recomendados."
+          required: true
+          type: "string"
+          format: "UUID"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/VideoDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /votos:
+    post:
+      tags:
+        - "votos"
+      security:
+        - APIKeyHeader: []
+      summary: "Criar um novo voto"
+      description: "Criar um novo voto"
+      operationId: "createVoto"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto para criar um voto"
+          required: true
+          schema:
+            $ref: "#/definitions/VotoDTO"
+      responses:
+        "201":
+          description: "Objeto criado"
+          schema:
+            $ref: "#/definitions/VotoDTO"
+        "403":
+          description: "Forbidden Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+    delete:
+      tags:
+        - "votos"
+      security:
+        - APIKeyHeader: []
+      summary: "Deletar um voto"
+      description: "Deletar um voto"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto para deletar um voto"
+          required: true
+          schema:
+            $ref: "#/definitions/DeleteVotoDTO"
+      responses:
+        "204":
+          description: "Objeto deletado"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /favoritos:
+    post:
+      tags:
+        - "favoritos"
+      security:
+        - APIKeyHeader: []
+      summary: "Criar um novo favorito"
+      description: "Permite ao usuário adicionar um vídeo à lista de favoritos"
+      operationId: "createFavoritos"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto para adicionar um favorito"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateFavoritoDTO"
+      responses:
+        "201":
+          description: "Objeto criado."
+          schema:
+            $ref: "#/definitions/FavoritoDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+    get:
+      tags:
+        - "favoritos"
+      security:
+        - APIKeyHeader: []
+      summary: "Listar todos favoritos"
+      description: "Rota disponível apenas para usuários cadastrados."
+      operationId: "getAllFavoritos"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/FavoritoDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /favoritos/{id}:
+    delete:
+      tags:
+        - "favoritos"
+      security:
+        - APIKeyHeader: []
+      summary: "Deletar um favorito"
+      description: "Permite tirar um vídeo dos favoritos."
+      operationId: "deleteFavorito"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID do favorito que será deletado"
+          required: true
+          type: "string"
+          format: "UUID"
+      responses:
+        "204":
+          description: "Objeto deletado"
+        "404":
+          description: "Not found Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /comentarios:
+    post:
+      tags:
+        - "comentarios"
+      security:
+        - APIKeyHeader: []
+      summary: "Criar um novo comentário"
+      description: "Criar um novo comentário"
+      operationId: "createComentario"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto para criar um comentário"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateComentarioDTO"
+      responses:
+        "201":
+          description: "Objeto criado"
+          schema:
+            $ref: "#/definitions/ComentarioDTO"
+        "404":
+          description: "Not found Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+    get:
+      tags:
+        - "comentarios"
+      security:
+        - APIKeyHeader: []
+      summary: "Listar todos comentários"
+      description: "Rota disponível para todos os usuários."
+      operationId: "getAllComentarios"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ComentarioDTO"
+  /comentarios/{id}:
+    delete:
+      tags:
+        - "comentarios"
+      security:
+        - APIKeyHeader: []
+      summary: "Deletar um comentario"
+      description: "Permite ao usuário deletar um comentário específico"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID do comentário que será deletado"
+          required: true
+          type: "string"
+          format: "UUID"
+      responses:
+        "204":
+          description: "Objeto deletado"
+        "404":
+          description: "Not found Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+    put:
+      tags:
+        - "comentarios"
+      security:
+        - APIKeyHeader: []
+      summary: "Atualiza um comentário pelo ID"
+      description: "Retorna um comentário atualizado. Disponível apenas para usuários cadastrados."
+      operationId: "updateComentarioById"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "Objeto do comentário que irá ser atualizado."
+          required: true
+          type: "string"
+          format: "UUID"
+        - in: "body"
+          name: "body"
+          description: "Comentario atualizado"
+          required: true
+          schema:
+            $ref: "#/definitions/ComentarioDTO"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/VideoDTO"
+        "404":
+          description: "Not found Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+    get:
+      tags:
+        - "comentarios"
+      security:
+        - APIKeyHeader: []
+      summary: "Obter um comentario pelo ID"
+      description: "Rota disponível para todos os usuários."
+      operationId: "getComentarioById"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID do comentário que será obtido"
+          required: true
+          type: "string"
+          format: "UUID"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/ComentarioDTO"
+        "404":
+          description: "Not found Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /materias:
+    post:
+      tags:
+        - "materias"
+      security:
+        - APIKeyHeader: []
+      summary: "Criar uma nova matéria"
+      description: "Criar uma nova matéria"
+      operationId: "createMateria"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto para criar uma matéria"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateMateriaDTO"
+      responses:
+        "201":
+          description: "Objeto criado"
+          schema:
+            $ref: "#/definitions/MateriaDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+    get:
+      tags:
+        - "materias"
+      security:
+        - APIKeyHeader: []
+      summary: "Listar todas matérias"
+      description: "Rota disponível para todos os usuários."
+      operationId: "getAllMaterias"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/MateriaDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /materias/{id}:
+    delete:
+      tags:
+        - "materias"
+      security:
+        - APIKeyHeader: []
+      summary: "Deletar uma materia"
+      description: "Permite ao usuário deletar uma matéria específica"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID da matéria que será deletada"
+          required: true
+          type: "string"
+          format: "UUID"
+      responses:
+        "204":
+          description: "Objeto deletado"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /historicos:
+    post:
+      tags:
+        - "historicos"
+      security:
+        - APIKeyHeader: []
+      summary: "Adicionar uma nova página ao histórico"
+      description: "Permite ao usuário registrar no histórico páginas previamente acessadas"
+      operationId: "createHistorico"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto para adicionar páginas ao histórico. Disponível a todos os usuários"
+          required: true
+          schema:
+            $ref: "#/definitions/AddHistoricoDTO"
+      responses:
+        "201":
+          description: "Objeto criado"
+          schema:
+            $ref: "#/definitions/AddHistoricoDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /historicos/{id}:
+    get:
+      tags:
+        - "historicos"
+      security:
+        - APIKeyHeader: []
+      summary: "Pega os historicos pelo id do aluno"
+      description: "Buscar o historico pelo id do aluno."
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID do aluno que vai ser procurado"
+          required: true
+          type: "string"
+          format: "UUID"
+      responses:
+        "200":
+          description: "Objeto achado: "
+        "400":
+          description: "Validation Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /professor:
+    post:
+      tags:
+        - "professor turma"
+      security:
+        - APIKeyHeader: []
+      summary: "Adiciona a ligação do professor a uma turma"
+      description: "Permite a criação de ligação entre professor e turma"
+      operationId: "createProfessorTurma"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto para fazer a ligação professor turma"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateProfessorTurmaDTO"
+      responses:
+        "201":
+          description: "Objeto criado."
+          schema:
+            $ref: "#/definitions/CreateProfessorTurmaDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+    delete:
+      tags:
+        - "professor"
+      security:
+        - APIKeyHeader: []
+      summary: "Remove a ligação entre um professor e uma turma"
+      description: "Rota disponivel apenas para administradores."
+      operationId: "deleteProfessorTurma"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto para fazer a ligação professor turma"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateProfessorTurmaDTO"
+      responses:
+        "204":
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/CreateProfessorTurmaDTO"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /professor/{id}:
+    get:
+      tags:
+        - "professor turma"
+      security:
+        - APIKeyHeader: []
+      summary: "Pega a ligação entre professor e turmas pelo id do professor"
+      description: "Permite pegar a ligação entre professor e turma."
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID do professor que vai ser procurado"
+          required: true
+          type: "string"
+          format: "UUID"
+      responses:
+        "200":
+          description: "Objeto achado: "
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Not found error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /email/cadastro:
+    post:
+      tags:
+        - "email"
+      security:
+        - APIKeyHeader: []
+      summary: "Manda email para o aluno com o codigo de acesso"
+      description: "Permite mandar o email para o aluno que vai entrar em alguma turma com o código de acesso"
+      operationId: "EnviaEmailComCodigo"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto para mandar o email"
+          required: true
+          schema:
+            $ref: "#/definitions/EmailDTO"
+      responses:
+        "200":
+          description: "Email enviado"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /email/recuperacao:
+    post:
+      tags:
+        - "email"
+      summary: "Manda email para o aluno com o codigo para recuperacao da senha"
+      description: "Permite mandar o email para o aluno com o código para recuperar a senha"
+      operationId: "EnviaEmailSenha"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto para mandar o email"
+          required: true
+          schema:
+            $ref: "#/definitions/EmailRecuperacaoDTO"
+      responses:
+        "200":
+          description: "Email enviado"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /upload/imagem:
+    post:
+      tags:
+        - "upload"
+      summary: "Faz upload de uma imagem"
+      consumes:
+        - "multipart/form-data"
+      parameters:
+        - in: "formData"
+          name: "upfile"
+          type: "file"
+          description: "Escolher arquivo para o upload:"
+      responses:
+        "200":
+          description: "Upload feito"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+  /upload/video:
+    post:
+      tags:
+        - "upload"
+      security:
+        - APIKeyHeader: []
+      summary: "Faz upload de um vídeo"
+      consumes:
+        - "multipart/form-data"
+      parameters:
+        - in: "formData"
+          name: "upfile"
+          type: "file"
+          description: "Escolher arquivo para o upload:"
+      responses:
+        "200":
+          description: "Upload feito"
+        "401":
+          description: "Unautorized Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDTO"

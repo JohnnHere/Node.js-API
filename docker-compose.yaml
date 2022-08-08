@@ -1,0 +1,13 @@
+version: '3'
+services:
+  mariadb:
+    image: mariadb
+    volumes:
+      - ./mariadb:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 4BC0D592-3712-420C-8101-351E4AF75444
+      MYSQL_DATABASE: raroacademy_drive_dev
+      MYSQL_USER: raroacademy
+      MYSQL_PASSWORD: hkqyal6q97n44inc0o20otfdpmziwp7v
+    ports:
+      - "3306:3306"
