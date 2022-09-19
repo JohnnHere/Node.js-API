@@ -26,7 +26,7 @@ Trocar para o arquivo do repositório :
 cd Node.js-API
 ```
 
-Instalas as dependencias :
+Instalar as dependencias :
 
 ```bash
 npm install
